@@ -23,13 +23,13 @@ input[type=range]{width:100%;accent-color:var(--or)}input[type=checkbox]{accent-
 .row{display:flex;gap:9px;flex-wrap:wrap}.row>*{flex:1;min-width:0}
 .btn{border:0;border-radius:13px;background:var(--or);color:#fff;padding:12px 15px;font:inherit;font-size:13px;font-weight:800;cursor:pointer;display:inline-flex;justify-content:center;align-items:center;gap:7px;text-decoration:none;min-height:44px}
 .btn.dark{background:#191919}.btn.outline{background:transparent;border:1px solid var(--or);color:var(--or)}.btn:disabled{opacity:.45;cursor:not-allowed}
-#drop{border:2px dashed var(--or);background:var(--soft);border-radius:16px;padding:24px 14px;text-align:center;font-size:14px;font-weight:800;cursor:pointer}
+#drop{border:2px dashed var(--or);background:var(--soft);border-radius:16px;padding:16px 12px;text-align:center;font-size:14px;font-weight:800;cursor:pointer}
 #drop small{display:block;color:var(--mu);font-weight:500;margin-top:5px}#drop.over{outline:3px solid #ff6a0033}
 .msg{font-size:12px;color:var(--mu);margin:8px 0 0}.err{color:#d22;font-weight:800}.hide{display:none!important}
-canvas{width:min(100%,300px);aspect-ratio:9/16;display:block;margin:12px auto;border-radius:17px;background:#000;box-shadow:0 8px 24px #0002}
+canvas{width:min(100%,220px);aspect-ratio:9/16;display:block;margin:8px auto;border-radius:15px;background:#000;box-shadow:0 8px 24px #0002}
 .tpls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.tpl{border:1px solid var(--bd);border-radius:12px;background:var(--bg);color:var(--tx);padding:12px 8px;font:inherit;font-size:11px;font-weight:800;cursor:pointer}.tpl.on{border:2px solid var(--or);color:var(--or);background:var(--soft);padding:11px 7px}
 .check{display:flex;align-items:center;gap:9px;font-size:12px;font-weight:700;color:var(--tx);margin:11px 0}.bar{height:9px;background:var(--bd);border-radius:99px;overflow:hidden;margin:12px 0 5px}.bar i{display:block;width:0;height:100%;background:var(--or);transition:width .15s}
-video.output{display:block;width:min(100%,300px);max-height:540px;margin:10px auto;border-radius:16px;background:#000}
+video.output{display:block;width:min(100%,220px);max-height:420px;margin:10px auto;border-radius:16px;background:#000}
 .note{padding:10px 12px;background:var(--soft);border-radius:12px;color:var(--mu);font-size:11px;margin-top:10px}
 footer{text-align:center;color:var(--mu);font-size:11px;padding:12px}
 @media(min-width:620px){main{padding-left:24px;padding-right:24px}.card{padding:20px}.tpls{grid-template-columns:repeat(3,minmax(0,1fr))}}
@@ -48,13 +48,13 @@ footer{text-align:center;color:var(--mu);font-size:11px;padding:12px}
 <section class="card"><h2><span class="num">2</span> Prévia do Reel</h2>
 <canvas id="cv" width="1080" height="1920"></canvas>
 <div class="row"><button class="btn dark" id="play">▶ Ver prévia</button><button class="btn outline" id="cover">📸 Baixar capa</button></div>
-<p class="msg">Formato vertical 9:16 · 1080 × 1920 · Áreas de segurança para redes sociais.</p>
+<p class="msg">Prévia compacta · Exportação vertical 9:16 em 1080 × 1920, preservando a melhor qualidade disponível do vídeo original.</p>
 </section>
 
 <section class="card"><h2><span class="num">3</span> Produto e identidade</h2>
 <div class="note">Use o Gemini para identificar o produto em quadros do vídeo. A IA sugere textos, mas não inventa preço, especificações ou benefícios que não estejam visíveis.</div>
 <div class="row" style="margin-top:12px"><button class="btn" id="aiAnalyze" type="button">✨ Analisar vídeo com Gemini</button><button class="btn outline" id="aiClear" type="button">Limpar sugestões</button></div>
-<p id="aiStatus" class="msg" role="status" aria-live="polite">Envie um vídeo e toque em Analisar com Gemini.</p>
+<label for="aiEndpoint">URL do backend Gemini (Cloudflare Worker)</label><input id="aiEndpoint" type="url" placeholder="https://seu-worker.seu-subdominio.workers.dev"><div class="row" style="margin-top:7px"><button class="btn outline" id="saveEndpoint" type="button">Salvar URL</button></div><p id="aiStatus" class="msg" role="status" aria-live="polite">Envie um vídeo e configure o backend para ativar a IA.</p>
 <label for="pn">Nome do produto</label><input id="pn" placeholder="Ex.: Mini processador de alimentos">
 <label for="pf">Nome do perfil</label><input id="pf" value="Pechinchei">
 <label for="hl">Texto de destaque no topo</label><input id="hl" placeholder="Ex.: Esse achadinho resolve a vida!">
@@ -79,12 +79,12 @@ footer{text-align:center;color:var(--mu);font-size:11px;padding:12px}
 <label class="check"><input type="checkbox" id="vf" checked> Selo de verificado no perfil</label>
 <label class="check"><input type="checkbox" id="pb2" checked> Barra de progresso no vídeo</label>
 <label class="check"><input type="checkbox" id="fd" checked> Fade suave na entrada e na saída</label>
-<label for="hs">Tamanho do cabeçalho</label><input id="hs" type="range" min="40" max="70" value="55">
+<label for="hs">Escala geral do perfil</label><input id="hs" type="range" min="70" max="130" value="100"><label for="av">Tamanho da foto de perfil</label><input id="av" type="range" min="70" max="150" value="120"><label for="nm">Tamanho do nome e @</label><input id="nm" type="range" min="70" max="160" value="130"><label for="vr">Tamanho do selo verificado</label><input id="vr" type="range" min="70" max="170" value="135">
 <label for="ca">Chamada aparece aos (segundos)</label><input id="ca" type="number" min="0" step=".5" value="2">
 <label class="check"><input type="checkbox" id="ct" checked> Mostrar chamada para ação</label>
 <label class="check"><input type="checkbox" id="bd" checked> Mostrar selo do template</label>
 <div class="row" style="margin-top:10px"><button class="btn outline" id="savePre">💾 Salvar como padrão</button><button class="btn outline" id="clearPre">Limpar padrão</button></div>
-<p class="msg">Exportação: 1080 × 1920 · 30 fps · até 14 Mbps (conforme suporte do navegador).</p>
+<p class="msg">Exportação: 1080 × 1920 · 30 fps · até 20 Mbps (conforme suporte do navegador e resolução original).</p>
 </section>
 
 <section class="card"><h2><span class="num">6</span> Gerar seu Reel</h2>
@@ -108,7 +108,7 @@ footer{text-align:center;color:var(--mu);font-size:11px;padding:12px}
 'use strict';
 const $=id=>document.getElementById(id), cv=$('cv'), cx=cv.getContext('2d'), W=720,H=1280,VY=300,VH=870;
 
-const video=document.createElement('video');video.playsInline=true;video.preload='auto';video.crossOrigin='anonymous';
+const video=document.createElement('video');video.playsInline=true;video.preload='auto';video.crossOrigin='anonymous';video.disablePictureInPicture=true;
 let loaded=false,logoImg=null,rendering=false,cancelled=false,tIdx=0,resultBlob=null,resultUrl='',audioCtx=null,sourceNode=null,monitorGain=null,renderGain=null,audioDest=null,raf=0,activeRecorder=null;
 const TPL=[
 {n:'ACHADINHO DO DIA',head:'ACHADINHO DO DIA',bg:'#ff6a00',fg:'#fff',ac:'#111',r:30,anim:'slide',hooks:['✨ ACHADINHO DO DIA!','🧡 Olha o achadinho de hoje!']},
@@ -160,13 +160,13 @@ function draw(){
  cx.save();cx.globalAlpha=$('bd').checked?alpha:0;cx.translate(W/2,by);cx.scale(Math.max(.01,sc),Math.max(.01,sc));cx.font='800 '+(29*scale)+'px Manrope';const bw=cx.measureText(T.head).width+52;cx.fillStyle=T.bg;rounded(-bw/2,-31,bw,62,T.r);cx.fill();if(T.n==='PECHINCHEI PREMIUM'){cx.strokeStyle=T.ac;cx.lineWidth=2;cx.stroke()}cx.fillStyle=T.fg;cx.textAlign='center';cx.textBaseline='middle';cx.fillText(T.head,0,1);cx.restore();
  const title=($('hl').value||$('pn').value).trim();if(title){cx.save();cx.font='800 '+(31*scale)+'px Manrope';cx.textAlign='center';cx.textBaseline='middle';const lines=wrap(title.toUpperCase(),W-70).slice(0,2),lh=40*scale;lines.forEach((line,i)=>{cx.lineWidth=7;cx.strokeStyle='rgba(0,0,0,.65)';cx.strokeText(line,W/2,382+i*lh);cx.fillStyle=fg;cx.fillText(line,W/2,382+i*lh)});cx.restore()}
  // Brand header
- const hs=Number($('hs').value)/100;cx.save();cx.translate(0,0);const cy=190,rad=43*hs;
+ const hs=Number($('hs').value)/100,avatarScale=Number($('av').value)/100,nameScale=Number($('nm').value)/100,verifyScale=Number($('vr').value)/100;cx.save();cx.translate(0,0);const cy=190,rad=43*hs*avatarScale;
  cx.beginPath();cx.arc(80,cy,rad,0,Math.PI*2);cx.fillStyle='#fff';cx.fill();
  cx.save();cx.beginPath();cx.arc(80,cy,rad-3,0,Math.PI*2);cx.clip();
  if(logoImg){const q=Math.min((rad*2-6)/logoImg.width,(rad*2-6)/logoImg.height),lw=logoImg.width*q,lh=logoImg.height*q;cx.drawImage(logoImg,80-lw/2,cy-lh/2,lw,lh)}else{cx.fillStyle='#ff6a00';cx.fillRect(80-rad,cy-rad,rad*2,rad*2);cx.fillStyle='#fff';cx.font='800 '+(44*hs)+'px Manrope';cx.textAlign='center';cx.fillText(($('pf').value||'P').trim()[0].toUpperCase(),80,cy+14*hs)}cx.restore();
- cx.textAlign='left';cx.fillStyle=fg;cx.font='800 '+(30*hs)+'px Manrope';const profile=$('pf').value||'Pechinchei';cx.fillText(profile,140,cy-4);const nameW=cx.measureText(profile).width,bx=140+nameW+20;
- if($('vf').checked){cx.fillStyle='#1da1f2';cx.beginPath();cx.arc(bx,cy-4,11,0,Math.PI*2);cx.fill();cx.strokeStyle='#fff';cx.lineWidth=2.5;cx.beginPath();cx.moveTo(bx-5,cy-4);cx.lineTo(bx-1,cy);cx.lineTo(bx+6,cy-8);cx.stroke()}
- cx.fillStyle='#aaa';cx.font='500 '+(21*hs)+'px Manrope';cx.fillText($('ph').value,140,cy+25);cx.restore();
+ cx.textAlign='left';cx.fillStyle=fg;cx.font='800 '+(30*hs*nameScale)+'px Manrope';const profile=$('pf').value||'Pechinchei';cx.fillText(profile,140,cy-4);const nameW=cx.measureText(profile).width,bx=140+nameW+20;
+ if($('vf').checked){cx.fillStyle='#1da1f2';cx.beginPath();cx.arc(bx,cy-4,11*hs*verifyScale,0,Math.PI*2);cx.fill();cx.strokeStyle='#fff';cx.lineWidth=2.5*hs*verifyScale;cx.beginPath();cx.moveTo(bx-5*hs*verifyScale,cy-4);cx.lineTo(bx-1*hs*verifyScale,cy);cx.lineTo(bx+6*hs*verifyScale,cy-8*hs*verifyScale);cx.stroke()}
+ cx.fillStyle='#aaa';cx.font='500 '+(21*hs*nameScale)+'px Manrope';cx.fillText($('ph').value,140,cy+25);cx.restore();
  if($('ct').checked&&t>=ctaAt()){const a=ease((t-ctaAt())/.45),txt=$('ctaT').value,y=VY+VH-150+(1-a)*45;cx.save();cx.globalAlpha=a;cx.font='800 '+(25*scale)+'px Manrope';const lines=wrap(txt,W-100).slice(0,3),hh=lines.length*34*scale+28;cx.fillStyle='#ff6a00';rounded(35,y-hh/2,W-70,hh,22);cx.fill();cx.fillStyle='#fff';cx.textAlign='center';lines.forEach((line,i)=>cx.fillText(line,W/2,y-hh/2+23*scale+i*34*scale));cx.restore()}
  if(loaded&&$('pb2').checked){cx.fillStyle='rgba(255,255,255,.3)';cx.fillRect(0,VY+VH-6,W,6);cx.fillStyle='#ff6a00';cx.fillRect(0,VY+VH-6,W* Math.max(0,Math.min(1,t/dur)),6)}
  if(loaded&&$('fd').checked&&(rendering||!video.paused)){const fade=Math.max(0,Math.min(1,1-t/.4,1-(dur-t)/.4));if(fade>0){cx.globalAlpha=fade;cx.fillStyle=bg;cx.fillRect(0,0,W,H);cx.globalAlpha=1}}
@@ -189,7 +189,7 @@ $('go').onclick=async()=>{
   setupAudio();if(audioCtx&&audioCtx.state==='suspended')await audioCtx.resume();if(monitorGain)monitorGain.gain.value=0;
   video.pause();await seek(s);
   stream=cv.captureStream(30);if(audioDest)audioDest.stream.getAudioTracks().forEach(track=>stream.addTrack(track));
-  rec=new MediaRecorder(stream,{mimeType:mt,videoBitsPerSecond:14000000,audioBitsPerSecond:192000});activeRecorder=rec;
+  rec=new MediaRecorder(stream,{mimeType:mt,videoBitsPerSecond:20000000,audioBitsPerSecond:192000});activeRecorder=rec;
   const chunks=[];rec.ondataavailable=ev=>{if(ev.data&&ev.data.size)chunks.push(ev.data)};
   const finished=new Promise(resolve=>{rec.onstop=resolve});
   rec.start(250);await video.play();
@@ -238,10 +238,29 @@ function captureVideoFrames(count=4){
  });
 }
 async function analyzeWithGemini(){
- const status=$('aiStatus');
+ const status=$('aiStatus'),button=$('aiAnalyze');
  if(!loaded){status.textContent='Primeiro envie um vídeo.';return}
- status.textContent='O editor está funcionando. A integração segura com Gemini será ativada depois que configurarmos um backend independente. Sua chave não deve ser colocada neste site público.';
+ const endpoint=(localStorage.getItem('pch_gemini_endpoint')||'').trim();
+ if(!endpoint){status.textContent='Falta configurar a URL do backend Gemini. Publique o arquivo worker.js no Cloudflare e informe a URL do Worker.';return}
+ button.disabled=true;status.textContent='Separando quadros do vídeo para análise…';
+ try{
+  const frames=await captureVideoFrames(4);
+  status.textContent='Analisando produto com Gemini…';
+  const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({frames,context:{productName:$('pn').value,category:$('pc').value,profile:$('pf').value}})});
+  const data=await response.json().catch(()=>({}));
+  if(!response.ok)throw new Error(data.error||'O backend recusou a solicitação ('+response.status+').');
+  const result=data.result||data;
+  if(result.productName)$('pn').value=result.productName;
+  if(result.category)$('pc').value=result.category;
+  if(result.headline)$('hl').value=result.headline;
+  if(Array.isArray(result.benefits))$('pb').value=result.benefits.join('\n');
+  if(result.caption)$('cap').value=result.caption;
+  status.textContent='Análise concluída! Revise as sugestões antes de publicar.';
+ }catch(error){status.textContent='Não foi possível analisar: '+(error.message||'erro desconhecido')+'. Confira a URL do Worker e tente novamente.'}
+ finally{button.disabled=false}
 }
+$('aiEndpoint').value=localStorage.getItem('pch_gemini_endpoint')||'';
+$('saveEndpoint').addEventListener('click',()=>{const u=$('aiEndpoint').value.trim();try{if(!u)throw new Error();new URL(u);localStorage.setItem('pch_gemini_endpoint',u);$('aiStatus').textContent='URL do backend salva neste aparelho.'}catch(e){$('aiStatus').textContent='Informe uma URL válida do Cloudflare Worker.'}});
 $('aiAnalyze').addEventListener('click',analyzeWithGemini);
 $('aiClear').addEventListener('click',()=>{$('hl').value='';$('aiStatus').textContent='Sugestões de texto limpas. Os dados do produto foram mantidos.'});
 
@@ -258,7 +277,7 @@ $('cC').onclick=()=>copy('cap');$('cT').onclick=()=>copy('tags');
 $('dl').onclick=()=>{if(!resultBlob)return;const name=$('dl').dataset.filename||'pechinchei-reel.webm';const a=document.createElement('a');a.href=resultUrl;a.download=name;document.body.appendChild(a);a.click();a.remove();$('st').textContent='Download iniciado. Se estiver no iPhone, use Compartilhar para salvar em Arquivos.'};
 $('share').onclick=async()=>{if(!resultBlob)return;const file=new File([resultBlob],$('dl').dataset.filename||'pechinchei-reel.webm',{type:resultBlob.type});try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],text:$('cap').value+'\n\n'+$('tags').value})}else if(navigator.share){await navigator.share({text:$('cap').value+'\n\n'+$('tags').value})}else setErr('Compartilhamento indisponível. Use Baixar vídeo.')}catch(e){if(e.name!=='AbortError')setErr('Não foi possível compartilhar este arquivo.')}};
 $('cover').onclick=()=>{if(!loaded){setErr('Envie um vídeo primeiro.');return}cv.toBlob(b=>{if(!b){setErr('Não foi possível gerar a capa.');return}const u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download='pechinchei-capa.jpg';a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)},'image/jpeg',.95)};
-const IDS=['pf','ph','hs','bg','vol','sz','ca'],CHECKS=['vf','pb2','fd','ct','bd'];
+const IDS=['pf','ph','hs','av','nm','vr','bg','vol','sz','ca'],CHECKS=['vf','pb2','fd','ct','bd'];
 $('savePre').onclick=()=>{try{const o={template:tIdx,logo:$('logo').files[0]?null:null};IDS.forEach(id=>o[id]=$(id).value);CHECKS.forEach(id=>o[id]=$(id).checked);if(logoImg){const c=document.createElement('canvas');c.width=logoImg.width;c.height=logoImg.height;c.getContext('2d').drawImage(logoImg,0,0);o.logo=c.toDataURL('image/png')}localStorage.setItem('pch_prefs',JSON.stringify(o));$('st').textContent='Preferências salvas neste aparelho. ✅'}catch(e){setErr('Não foi possível salvar as preferências. A logo pode ser muito grande.')}};
 $('clearPre').onclick=()=>{localStorage.removeItem('pch_prefs');$('st').textContent='Preferências apagadas.'};
 try{const o=JSON.parse(localStorage.getItem('pch_prefs')||'null');if(o){IDS.forEach(id=>{if(o[id]!=null)$(id).value=o[id]});CHECKS.forEach(id=>{if(o[id]!=null)$(id).checked=o[id]});if(o.template!=null)pick(o.template);if(o.logo){const im=new Image();im.onload=()=>logoImg=im;im.src=o.logo}}}catch(e){}
