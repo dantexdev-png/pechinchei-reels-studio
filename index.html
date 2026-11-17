@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#fff7f0"><meta name="description" content="Crie Reels profissionais para o Pechinchei, direto no seu aparelho.">
+<title>Pechinchei Reels Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:light;--bg:#fff7f0;--card:#fff;--tx:#171411;--mu:#746c65;--or:#ff6a00;--bd:#f0dccb;--soft:#fff0e4;--shadow:0 10px 30px #6b35100b}
+:root[data-theme=dark]{color-scheme:dark;--bg:#101010;--card:#1b1b1b;--tx:#f6f2ee;--mu:#aaa19a;--or:#ff7a1a;--bd:#33302d;--soft:#2b211a;--shadow:0 10px 30px #0003}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font-family:Manrope,system-ui,sans-serif;line-height:1.45}
+main{max-width:760px;margin:auto;padding:calc(18px + env(safe-area-inset-top)) 16px calc(32px + env(safe-area-inset-bottom))}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:4px 0 18px}
+h1{font-size:clamp(20px,5vw,28px);letter-spacing:-1px;margin:0;font-weight:800}h1 b{color:var(--or)}.sub{font-size:13px;color:var(--mu);margin:5px 0 0}
+.badge{font-size:10px;font-weight:800;letter-spacing:.6px;color:var(--or);background:var(--soft);padding:7px 10px;border-radius:99px;white-space:nowrap}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:20px;padding:17px;margin:14px 0;box-shadow:var(--shadow)}
+.card h2{font-size:15px;margin:0 0 12px;display:flex;align-items:center;gap:8px}.num{display:grid;place-items:center;background:var(--soft);color:var(--or);width:25px;height:25px;border-radius:8px;font-size:12px}
+label{display:block;font-size:12px;font-weight:800;color:var(--mu);margin:12px 0 5px}
+input:not([type=checkbox]):not([type=range]):not([type=file]),select,textarea{width:100%;border:1px solid var(--bd);border-radius:12px;padding:11px 12px;background:var(--bg);color:var(--tx);font:inherit;font-size:14px;outline:none}
+textarea{min-height:88px;resize:vertical}input:focus,select:focus,textarea:focus{border-color:var(--or)!important;box-shadow:0 0 0 3px #ff6a001c}
+input[type=range]{width:100%;accent-color:var(--or)}input[type=checkbox]{accent-color:var(--or);width:17px;height:17px}
+.row{display:flex;gap:9px;flex-wrap:wrap}.row>*{flex:1;min-width:0}
+.btn{border:0;border-radius:13px;background:var(--or);color:#fff;padding:12px 15px;font:inherit;font-size:13px;font-weight:800;cursor:pointer;display:inline-flex;justify-content:center;align-items:center;gap:7px;text-decoration:none;min-height:44px}
+.btn.dark{background:#191919}.btn.outline{background:transparent;border:1px solid var(--or);color:var(--or)}.btn:disabled{opacity:.45;cursor:not-allowed}
+#drop{border:2px dashed var(--or);background:var(--soft);border-radius:16px;padding:24px 14px;text-align:center;font-size:14px;font-weight:800;cursor:pointer}
+#drop small{display:block;color:var(--mu);font-weight:500;margin-top:5px}#drop.over{outline:3px solid #ff6a0033}
+.msg{font-size:12px;color:var(--mu);margin:8px 0 0}.err{color:#d22;font-weight:800}.hide{display:none!important}
+canvas{width:min(100%,300px);aspect-ratio:9/16;display:block;margin:12px auto;border-radius:17px;background:#000;box-shadow:0 8px 24px #0002}
+.tpls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.tpl{border:1px solid var(--bd);border-radius:12px;background:var(--bg);color:var(--tx);padding:12px 8px;font:inherit;font-size:11px;font-weight:800;cursor:pointer}.tpl.on{border:2px solid var(--or);color:var(--or);background:var(--soft);padding:11px 7px}
+.check{display:flex;align-items:center;gap:9px;font-size:12px;font-weight:700;color:var(--tx);margin:11px 0}.bar{height:9px;background:var(--bd);border-radius:99px;overflow:hidden;margin:12px 0 5px}.bar i{display:block;width:0;height:100%;background:var(--or);transition:width .15s}
+video.output{display:block;width:min(100%,300px);max-height:540px;margin:10px auto;border-radius:16px;background:#000}
+.note{padding:10px 12px;background:var(--soft);border-radius:12px;color:var(--mu);font-size:11px;margin-top:10px}
+footer{text-align:center;color:var(--mu);font-size:11px;padding:12px}
+@media(min-width:620px){main{padding-left:24px;padding-right:24px}.card{padding:20px}.tpls{grid-template-columns:repeat(3,minmax(0,1fr))}}
+</style></head>
+<body><main>
+<header><div><h1>PECHINCHEI <b>REELS STUDIO</b> 🧡</h1><p class="sub">Seu estúdio de vídeos curtos. Simples, rápido e direto no seu aparelho.</p></div><span class="badge">EDIÇÃO LOCAL</span></header>
+
+<section class="card"><h2><span class="num">1</span> Seu vídeo</h2>
+<div id="drop" role="button" tabindex="0">📹 Toque para escolher ou arraste um vídeo<small>MP4 ou MOV · O arquivo não é enviado para um servidor</small></div>
+<input id="file" type="file" accept="video/mp4,video/quicktime,.mp4,.mov" class="hide">
+<p id="info" class="msg"></p><p id="err" class="msg err" role="alert"></p>
+<div class="row"><div><label for="ts">Início (segundos)</label><input id="ts" type="number" min="0" step=".1" value="0"></div><div><label for="te">Fim (segundos)</label><input id="te" type="number" min="0" step=".1" value="0"></div></div>
+<div class="row" style="margin-top:9px"><button class="btn outline" id="setS">Início = agora</button><button class="btn outline" id="setE">Fim = agora</button></div>
+</section>
+
+<section class="card"><h2><span class="num">2</span> Prévia do Reel</h2>
+<canvas id="cv" width="1080" height="1920"></canvas>
+<div class="row"><button class="btn dark" id="play">▶ Ver prévia</button><button class="btn outline" id="cover">📸 Baixar capa</button></div>
+<p class="msg">Formato vertical 9:16 · 1080 × 1920 · Áreas de segurança para redes sociais.</p>
+</section>
+
+<section class="card"><h2><span class="num">3</span> Produto e identidade</h2>
+<div class="note">Use o Gemini para identificar o produto em quadros do vídeo. A IA sugere textos, mas não inventa preço, especificações ou benefícios que não estejam visíveis.</div>
+<div class="row" style="margin-top:12px"><button class="btn" id="aiAnalyze" type="button">✨ Analisar vídeo com Gemini</button><button class="btn outline" id="aiClear" type="button">Limpar sugestões</button></div>
+<p id="aiStatus" class="msg" role="status" aria-live="polite">Envie um vídeo e toque em Analisar com Gemini.</p>
+<label for="pn">Nome do produto</label><input id="pn" placeholder="Ex.: Mini processador de alimentos">
+<label for="pf">Nome do perfil</label><input id="pf" value="Pechinchei">
+<label for="hl">Texto de destaque no topo</label><input id="hl" placeholder="Ex.: Esse achadinho resolve a vida!">
+<label for="pc">Categoria</label><input id="pc" placeholder="Ex.: cozinha">
+<label for="pb">Benefícios reais (um por linha)</label><textarea id="pb" placeholder="Pica alimentos em segundos&#10;Carrega por USB"></textarea>
+<label for="ph">@ do Instagram</label><input id="ph" value="@pechinchei">
+<label for="logo">Logo (PNG/JPG)</label><input id="logo" type="file" accept="image/png,image/jpeg,image/webp">
+</section>
+
+<section class="card"><h2><span class="num">4</span> Escolha seu template</h2>
+<div class="tpls" id="tpls">
+<button class="tpl on" data-i="0">🧡 ACHADINHO DO DIA</button><button class="tpl" data-i="1">🔥 OFERTA IMPERDÍVEL</button><button class="tpl" data-i="2">👀 VOCÊ PRECISA CONHECER</button><button class="tpl" data-i="3">😍 OLHA ESSE ACHADO</button><button class="tpl" data-i="4">🖤 PECHINCHEI PREMIUM</button>
+</div>
+<label for="ctaT">Chamada para ação</label><select id="ctaS"><option>🔥 ENCONTRE ESSE ACHADO NO LINK DA BIO!</option><option>🧡 QUER PAGAR MAIS BARATO? ACESSE NOSSA BIO!</option><option>🛍️ CONFIRA ESSA OFERTA NO PECHINCHEI!</option><option>👀 SALVE PARA NÃO PERDER!</option><option>💸 MAIS ACHADINHOS NO NOSSO PERFIL!</option></select>
+<input id="ctaT" style="margin-top:8px" value="🔥 ENCONTRE ESSE ACHADO NO LINK DA BIO!">
+<label for="sz">Tamanho dos textos</label><input id="sz" type="range" min="70" max="130" value="100">
+</section>
+
+<section class="card"><h2><span class="num">5</span> Acabamento premium</h2>
+<label for="bg">Cor de fundo</label><select id="bg"><option value="#000000">Preto</option><option value="#141414">Grafite</option><option value="#ffffff">Branco</option></select>
+<label for="vol">Volume do áudio</label><input id="vol" type="range" min="0" max="150" value="100">
+<label class="check"><input type="checkbox" id="vf" checked> Selo de verificado no perfil</label>
+<label class="check"><input type="checkbox" id="pb2" checked> Barra de progresso no vídeo</label>
+<label class="check"><input type="checkbox" id="fd" checked> Fade suave na entrada e na saída</label>
+<label for="hs">Tamanho do cabeçalho</label><input id="hs" type="range" min="40" max="70" value="55">
+<label for="ca">Chamada aparece aos (segundos)</label><input id="ca" type="number" min="0" step=".5" value="2">
+<label class="check"><input type="checkbox" id="ct" checked> Mostrar chamada para ação</label>
+<label class="check"><input type="checkbox" id="bd" checked> Mostrar selo do template</label>
+<div class="row" style="margin-top:10px"><button class="btn outline" id="savePre">💾 Salvar como padrão</button><button class="btn outline" id="clearPre">Limpar padrão</button></div>
+<p class="msg">Exportação: 1080 × 1920 · 30 fps · até 14 Mbps (conforme suporte do navegador).</p>
+</section>
+
+<section class="card"><h2><span class="num">6</span> Gerar seu Reel</h2>
+<div class="row"><button class="btn" id="go">🎬 GERAR REEL</button><button class="btn dark" id="cancel" disabled>Cancelar</button></div>
+<div class="bar"><i id="pg"></i></div><p id="st" class="msg" aria-live="polite">Aguardando vídeo.</p>
+</section>
+
+<section class="card hide" id="res"><h2><span class="num">✓</span> Central de publicação</h2>
+<video id="out" class="output" controls playsinline></video>
+<label for="cap">Legenda sugerida</label><textarea id="cap" style="min-height:150px"></textarea>
+<label for="tags">Hashtags</label><textarea id="tags" style="min-height:60px"></textarea>
+<div class="row" style="margin-top:9px"><button class="btn outline" id="cC">Copiar legenda</button><button class="btn outline" id="cT">Copiar hashtags</button></div>
+<div class="row" style="margin-top:9px"><button class="btn" id="dl">⬇ Baixar vídeo</button><button class="btn dark" id="share">Compartilhar</button></div>
+<div class="row" style="margin-top:9px"><button class="btn outline" id="regC">Nova legenda</button><button class="btn outline" id="regT">Trocar template</button></div>
+<p class="msg">Se o download não iniciar no iPhone, use Compartilhar e escolha “Salvar em Arquivos”.</p>
+</section>
+<footer>PECHINCHEI REELS STUDIO · Seus vídeos são processados localmente.</footer>
+</main>
+<script>
+(() => {
+'use strict';
+const $=id=>document.getElementById(id), cv=$('cv'), cx=cv.getContext('2d'), W=720,H=1280,VY=300,VH=870;
+
+const video=document.createElement('video');video.playsInline=true;video.preload='auto';video.crossOrigin='anonymous';
+let loaded=false,logoImg=null,rendering=false,cancelled=false,tIdx=0,resultBlob=null,resultUrl='',audioCtx=null,sourceNode=null,monitorGain=null,renderGain=null,audioDest=null,raf=0,activeRecorder=null;
+const TPL=[
+{n:'ACHADINHO DO DIA',head:'ACHADINHO DO DIA',bg:'#ff6a00',fg:'#fff',ac:'#111',r:30,anim:'slide',hooks:['✨ ACHADINHO DO DIA!','🧡 Olha o achadinho de hoje!']},
+{n:'OFERTA IMPERDÍVEL',head:'OFERTA IMPERDÍVEL',bg:'#e60023',fg:'#fff',ac:'#ffd400',r:8,anim:'pop',hooks:['🔥 OFERTA IMPERDÍVEL!','🚨 Esse achado merece sua atenção!']},
+{n:'VOCÊ PRECISA CONHECER',head:'VOCÊ PRECISA CONHECER',bg:'#111',fg:'#ff6a00',ac:'#fff',r:14,anim:'fade',hooks:['👀 Você precisa conhecer isso!','🤔 Sabe aquele produto que facilita a vida?']},
+{n:'OLHA ESSE ACHADO',head:'OLHA ESSE ACHADO!',bg:'#fff',fg:'#ff6a00',ac:'#111',r:40,anim:'bounce',hooks:['😍 OLHA ESSE ACHADO!','🔥 Gente, olha só isso!']},
+{n:'PECHINCHEI PREMIUM',head:'PECHINCHEI PREMIUM',bg:'rgba(0,0,0,.78)',fg:'#fff',ac:'#ff6a00',r:4,anim:'fade',hooks:['🖤 Seleção Pechinchei','🧡 Um achado que vale a pena conhecer']}
+];
+const ease=x=>{x=Math.max(0,Math.min(1,x));return 1-Math.pow(1-x,3)};
+const back=x=>{x=Math.max(0,Math.min(1,x));const c=1.7;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+const setErr=m=>$('err').textContent=m||'';
+const start=()=>Math.max(0,Number($('ts').value)||0);
+const end=()=>Number($('te').value)||video.duration||0;
+const ctaAt=()=>Math.max(0,Number($('ca').value)||0);
+function pick(i){tIdx=i;document.querySelectorAll('.tpl').forEach((b,j)=>b.classList.toggle('on',j===i))}
+document.querySelectorAll('.tpl').forEach(b=>b.addEventListener('click',()=>pick(Number(b.dataset.i))));
+$('ctaS').addEventListener('change',()=>$('ctaT').value=$('ctaS').value);
+$('ph').value=localStorage.getItem('pch_handle')||'@pechinchei';
+$('ph').addEventListener('change',()=>localStorage.setItem('pch_handle',$('ph').value));
+function loadFile(file){
+ setErr('');if(!file)return;
+ if(!/\.(mp4|mov)$/i.test(file.name)&&!/^video\/(mp4|quicktime)$/.test(file.type)){setErr('Arquivo inválido. Envie um vídeo MP4 ou MOV.');return}
+ loaded=false;video.pause();if(video.src)URL.revokeObjectURL(video.src);video.src=URL.createObjectURL(file);video.load();
+ video.onloadedmetadata=()=>{if(!video.videoWidth){setErr('Não foi possível ler este vídeo.');return}loaded=true;$('ts').value='0';$('te').value=video.duration.toFixed(1);$('info').textContent='Duração '+video.duration.toFixed(1)+'s · '+video.videoWidth+'×'+video.videoHeight+(Math.min(video.videoWidth,video.videoHeight)<1080?' · Origem abaixo de Full HD.':'');$('st').textContent='Vídeo carregado. Pronto para editar.';video.currentTime=0;setupAudio()};
+ video.onerror=()=>setErr('Não foi possível abrir este vídeo. Tente outro MP4 ou MOV.');
+}
+$('drop').onclick=()=>$('file').click();$('drop').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();$('file').click()}};
+$('file').onchange=e=>loadFile(e.target.files[0]);
+['dragover','dragenter'].forEach(ev=>$('drop').addEventListener(ev,e=>{e.preventDefault();$('drop').classList.add('over')}));
+['dragleave','drop'].forEach(ev=>$('drop').addEventListener(ev,e=>{e.preventDefault();$('drop').classList.remove('over')}));
+$('drop').addEventListener('drop',e=>loadFile(e.dataTransfer.files[0]));
+$('setS').onclick=()=>{if(loaded)$('ts').value=video.currentTime.toFixed(1)};
+$('setE').onclick=()=>{if(loaded)$('te').value=video.currentTime.toFixed(1)};
+$('logo').onchange=e=>{const f=e.target.files[0];if(!f)return;const im=new Image();im.onload=()=>logoImg=im;im.onerror=()=>setErr('Não foi possível abrir a logo.');im.src=URL.createObjectURL(f)};
+function setupAudio(){
+ if(sourceNode)return;
+ try{audioCtx=new(window.AudioContext||window.webkitAudioContext)();sourceNode=audioCtx.createMediaElementSource(video);monitorGain=audioCtx.createGain();renderGain=audioCtx.createGain();audioDest=audioCtx.createMediaStreamDestination();sourceNode.connect(monitorGain);monitorGain.connect(audioCtx.destination);sourceNode.connect(renderGain);renderGain.connect(audioDest)}catch(e){audioCtx=null;sourceNode=null}
+}
+function wrap(text,max){const words=text.split(/\s+/),lines=[];let line='';for(const word of words){const next=line?line+' '+word:word;if(cx.measureText(next).width>max&&line){lines.push(line);line=word}else line=next}if(line)lines.push(line);return lines}
+function rounded(x,y,w,h,r){cx.beginPath();if(cx.roundRect)cx.roundRect(x,y,w,h,r);else cx.rect(x,y,w,h)}
+function draw(){
+ cx.setTransform(1.5,0,0,1.5,0,0);cx.imageSmoothingEnabled=true;cx.imageSmoothingQuality='high';
+ const bg=$('bg').value,fg=bg==='#ffffff'?'#151515':'#fff',scale=Number($('sz').value)/100,t=loaded?Math.max(0,video.currentTime-start()):0,dur=loaded?Math.max(.1,end()-start()):1;
+ cx.fillStyle=bg;cx.fillRect(0,0,W,H);
+ if(loaded&&video.videoWidth){const s=Math.max(W/video.videoWidth,VH/video.videoHeight),dw=video.videoWidth*s,dh=video.videoHeight*s;cx.save();cx.beginPath();cx.rect(0,VY,W,VH);cx.clip();if(video.readyState>=2)cx.drawImage(video,(W-dw)/2,VY+(VH-dh)/2,dw,dh);cx.restore()}
+ else{cx.fillStyle='#222';cx.fillRect(0,VY,W,VH);cx.fillStyle='#ff6a00';cx.font='800 34px Manrope';cx.textAlign='center';cx.fillText('ENVIE SEU VÍDEO',W/2,H/2)}
+ const grad=cx.createLinearGradient(0,VY+VH*.5,0,VY+VH);grad.addColorStop(0,'transparent');grad.addColorStop(1,'rgba(0,0,0,.58)');cx.fillStyle=grad;cx.fillRect(0,VY+VH*.5,W,VH*.5);
+ const T=TPL[tIdx],anim=ease(t/.6);let by=VY+54,sc=1,alpha=1;if(T.anim==='slide')by-=(1-anim)*120;else if(T.anim==='pop'||T.anim==='bounce')sc=back(t/(T.anim==='pop'?.5:.7));else alpha=anim;
+ cx.save();cx.globalAlpha=$('bd').checked?alpha:0;cx.translate(W/2,by);cx.scale(Math.max(.01,sc),Math.max(.01,sc));cx.font='800 '+(29*scale)+'px Manrope';const bw=cx.measureText(T.head).width+52;cx.fillStyle=T.bg;rounded(-bw/2,-31,bw,62,T.r);cx.fill();if(T.n==='PECHINCHEI PREMIUM'){cx.strokeStyle=T.ac;cx.lineWidth=2;cx.stroke()}cx.fillStyle=T.fg;cx.textAlign='center';cx.textBaseline='middle';cx.fillText(T.head,0,1);cx.restore();
+ const title=($('hl').value||$('pn').value).trim();if(title){cx.save();cx.font='800 '+(31*scale)+'px Manrope';cx.textAlign='center';cx.textBaseline='middle';const lines=wrap(title.toUpperCase(),W-70).slice(0,2),lh=40*scale;lines.forEach((line,i)=>{cx.lineWidth=7;cx.strokeStyle='rgba(0,0,0,.65)';cx.strokeText(line,W/2,382+i*lh);cx.fillStyle=fg;cx.fillText(line,W/2,382+i*lh)});cx.restore()}
+ // Brand header
+ const hs=Number($('hs').value)/100;cx.save();cx.translate(0,0);const cy=190,rad=43*hs;
+ cx.beginPath();cx.arc(80,cy,rad,0,Math.PI*2);cx.fillStyle='#fff';cx.fill();
+ cx.save();cx.beginPath();cx.arc(80,cy,rad-3,0,Math.PI*2);cx.clip();
+ if(logoImg){const q=Math.min((rad*2-6)/logoImg.width,(rad*2-6)/logoImg.height),lw=logoImg.width*q,lh=logoImg.height*q;cx.drawImage(logoImg,80-lw/2,cy-lh/2,lw,lh)}else{cx.fillStyle='#ff6a00';cx.fillRect(80-rad,cy-rad,rad*2,rad*2);cx.fillStyle='#fff';cx.font='800 '+(44*hs)+'px Manrope';cx.textAlign='center';cx.fillText(($('pf').value||'P').trim()[0].toUpperCase(),80,cy+14*hs)}cx.restore();
+ cx.textAlign='left';cx.fillStyle=fg;cx.font='800 '+(30*hs)+'px Manrope';const profile=$('pf').value||'Pechinchei';cx.fillText(profile,140,cy-4);const nameW=cx.measureText(profile).width,bx=140+nameW+20;
+ if($('vf').checked){cx.fillStyle='#1da1f2';cx.beginPath();cx.arc(bx,cy-4,11,0,Math.PI*2);cx.fill();cx.strokeStyle='#fff';cx.lineWidth=2.5;cx.beginPath();cx.moveTo(bx-5,cy-4);cx.lineTo(bx-1,cy);cx.lineTo(bx+6,cy-8);cx.stroke()}
+ cx.fillStyle='#aaa';cx.font='500 '+(21*hs)+'px Manrope';cx.fillText($('ph').value,140,cy+25);cx.restore();
+ if($('ct').checked&&t>=ctaAt()){const a=ease((t-ctaAt())/.45),txt=$('ctaT').value,y=VY+VH-150+(1-a)*45;cx.save();cx.globalAlpha=a;cx.font='800 '+(25*scale)+'px Manrope';const lines=wrap(txt,W-100).slice(0,3),hh=lines.length*34*scale+28;cx.fillStyle='#ff6a00';rounded(35,y-hh/2,W-70,hh,22);cx.fill();cx.fillStyle='#fff';cx.textAlign='center';lines.forEach((line,i)=>cx.fillText(line,W/2,y-hh/2+23*scale+i*34*scale));cx.restore()}
+ if(loaded&&$('pb2').checked){cx.fillStyle='rgba(255,255,255,.3)';cx.fillRect(0,VY+VH-6,W,6);cx.fillStyle='#ff6a00';cx.fillRect(0,VY+VH-6,W* Math.max(0,Math.min(1,t/dur)),6)}
+ if(loaded&&$('fd').checked&&(rendering||!video.paused)){const fade=Math.max(0,Math.min(1,1-t/.4,1-(dur-t)/.4));if(fade>0){cx.globalAlpha=fade;cx.fillStyle=bg;cx.fillRect(0,0,W,H);cx.globalAlpha=1}}
+ raf=requestAnimationFrame(draw);
+}
+draw();
+$('play').onclick=async()=>{if(!loaded){setErr('Envie um vídeo primeiro.');return}if(!video.paused){video.pause();$('play').textContent='▶ Ver prévia';return}try{if(audioCtx&&audioCtx.state==='suspended')await audioCtx.resume();video.currentTime=start();await video.play();$('play').textContent='⏸ Pausar'}catch(e){setErr('Não foi possível reproduzir este vídeo.')}};
+video.addEventListener('timeupdate',()=>{if(!rendering&&!video.paused&&video.currentTime>=end()){video.pause();$('play').textContent='▶ Ver prévia'}});
+function supportedMime(){if(!window.MediaRecorder)return'';return ['video/mp4;codecs=avc1.42E01E,mp4a.40.2','video/mp4','video/webm;codecs=vp9,opus','video/webm;codecs=vp8,opus','video/webm'].find(x=>MediaRecorder.isTypeSupported(x))||''}
+function seek(time){return new Promise((resolve,reject)=>{const done=()=>{video.removeEventListener('seeked',done);resolve()};video.addEventListener('seeked',done,{once:true});video.currentTime=time;setTimeout(()=>{video.removeEventListener('seeked',done);resolve()},2500)})}
+$('cancel').onclick=()=>{cancelled=true;if(activeRecorder&&activeRecorder.state!=='inactive')activeRecorder.stop();video.pause()};
+$('go').onclick=async()=>{
+ setErr('');if(!loaded){setErr('Envie um vídeo primeiro.');return}
+ if(!window.MediaRecorder||!cv.captureStream){setErr('Seu navegador não oferece suporte à exportação. Atualize o Safari ou use Chrome/Edge.');return}
+ const s=start(),e=end();if(!(e>s)||e>video.duration+.05){setErr('Corte inválido. Confira o início e o fim.');return}
+ const mt=supportedMime();if(!mt){setErr('Este navegador não oferece um formato de vídeo compatível para exportação.');return}
+ rendering=true;cancelled=false;$('go').disabled=true;$('cancel').disabled=false;$('res').classList.add('hide');$('pg').style.width='0%';
+ let stream=null,rec=null;
+ try{
+  setupAudio();if(audioCtx&&audioCtx.state==='suspended')await audioCtx.resume();if(monitorGain)monitorGain.gain.value=0;
+  video.pause();await seek(s);
+  stream=cv.captureStream(30);if(audioDest)audioDest.stream.getAudioTracks().forEach(track=>stream.addTrack(track));
+  rec=new MediaRecorder(stream,{mimeType:mt,videoBitsPerSecond:14000000,audioBitsPerSecond:192000});activeRecorder=rec;
+  const chunks=[];rec.ondataavailable=ev=>{if(ev.data&&ev.data.size)chunks.push(ev.data)};
+  const finished=new Promise(resolve=>{rec.onstop=resolve});
+  rec.start(250);await video.play();
+  await new Promise(resolve=>{
+   const tick=()=>{if(cancelled||video.currentTime>=e||video.ended){resolve();return}
+    const elapsed=Math.max(0,video.currentTime-s),duration=e-s,p=Math.min(1,elapsed/duration);
+    if(renderGain)renderGain.gain.value=(Number($('vol').value)/100)*($('fd').checked?Math.max(0,Math.min(1,elapsed/.4,(duration-elapsed)/.4)):1);
+    $('pg').style.width=(p*100)+'%';$('st').textContent='Renderizando… '+Math.round(p*100)+'%';setTimeout(tick,80)};
+   tick();
+  });
+  video.pause();if(rec.state!=='inactive')rec.stop();await finished;
+  if(cancelled){$('st').textContent='Renderização cancelada.';return}
+  resultBlob=new Blob(chunks,{type:mt.split(';')[0]});if(!resultBlob.size)throw new Error('O arquivo gerado ficou vazio.');
+  if(resultUrl)URL.revokeObjectURL(resultUrl);resultUrl=URL.createObjectURL(resultBlob);$('out').src=resultUrl;
+  const ext=resultBlob.type.includes('mp4')?'mp4':'webm';$('dl').dataset.filename='pechinchei-'+(($('pn').value.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''))||'reel')+'.'+ext;
+  makeCaption();$('res').classList.remove('hide');$('res').scrollIntoView({behavior:'smooth'});$('st').textContent='Reel pronto! ✅';$('pg').style.width='100%';
+ }catch(err){if(!cancelled)setErr('Falha ao gerar o vídeo: '+(err&&err.message||err))}
+ finally{rendering=false;activeRecorder=null;$('go').disabled=false;$('cancel').disabled=true;if(monitorGain)monitorGain.gain.value=1;if(renderGain)renderGain.gain.value=1;if(stream)stream.getTracks().forEach(t=>t.stop())}
+};
+const random=a=>a[Math.floor(Math.random()*a.length)];
+
+function captureVideoFrames(count=4){
+ return new Promise(async(resolve,reject)=>{
+  if(!loaded||!video.videoWidth){reject(new Error('Carregue um vídeo primeiro.'));return}
+  const wasPaused=video.paused,oldTime=video.currentTime,s=start(),e=end();
+  const duration=Math.max(.1,e-s),times=Array.from({length:count},(_,i)=>s+duration*((i+.5)/count));
+  const shots=[];
+  try{
+   video.pause();
+   for(const time of times){
+    await new Promise((res,rej)=>{
+     const onSeek=()=>{cleanup();res()},onError=()=>{cleanup();rej(new Error('Não foi possível ler um quadro do vídeo.'))};
+     const cleanup=()=>{video.removeEventListener('seeked',onSeek);video.removeEventListener('error',onError)};
+     video.addEventListener('seeked',onSeek,{once:true});video.addEventListener('error',onError,{once:true});
+     video.currentTime=Math.min(time,Math.max(0,video.duration-.05));
+     if(Math.abs(video.currentTime-time)<.01) {cleanup();res()}
+    });
+    const c=document.createElement('canvas');c.width=640;c.height=Math.round(640*video.videoHeight/video.videoWidth);
+    c.getContext('2d').drawImage(video,0,0,c.width,c.height);
+    shots.push(c.toDataURL('image/jpeg',.72).split(',')[1]);
+   }
+   video.currentTime=oldTime;
+   if(!wasPaused) await video.play().catch(()=>{});
+   resolve(shots);
+  }catch(err){video.currentTime=oldTime;reject(err)}
+ });
+}
+async function analyzeWithGemini(){
+ const status=$('aiStatus');
+ if(!loaded){status.textContent='Primeiro envie um vídeo.';return}
+ status.textContent='O editor está funcionando. A integração segura com Gemini será ativada depois que configurarmos um backend independente. Sua chave não deve ser colocada neste site público.';
+}
+$('aiAnalyze').addEventListener('click',analyzeWithGemini);
+$('aiClear').addEventListener('click',()=>{$('hl').value='';$('aiStatus').textContent='Sugestões de texto limpas. Os dados do produto foram mantidos.'});
+
+function makeCaption(){
+ const n=$('pn').value.trim(),benefits=$('pb').value.split('\n').map(x=>x.trim()).filter(Boolean),intro=n?random(['Esse aqui merece sua atenção: '+n+'!','Olha só o que a gente encontrou: '+n+'.',n+' — olha que ideia!']):random(['Esse aqui merece sua atenção!','Olha só o que a gente encontrou!']);
+ const close=random(['🧡 Quer encontrar esse achado?\n👉 Acesse o link da bio e confira!','👀 Salve este vídeo para não perder!\n🛍️ Mais achadinhos no link da bio!','💸 Quer pagar mais barato?\n👉 O link está na bio!']);
+ $('cap').value=[random(TPL[tIdx].hooks),'',intro,...(benefits.length?['',...benefits.map(x=>'✅ '+x)]:[]),'',close].join('\n');
+ const slug=s=>s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]/g,'');
+ const tags=new Set();n.split(/\s+/).filter(x=>x.length>3).slice(0,3).forEach(x=>tags.add('#'+slug(x)));const cat=slug($('pc').value);if(cat){tags.add('#'+cat);tags.add('#achadinhos'+cat)}['#achadinhos','#achadinhosdodia','#comprasonline','#dicasdecompras','#pechinchei'].forEach(x=>tags.add(x));$('tags').value=[...tags].join(' ');
+}
+$('regC').onclick=makeCaption;$('regT').onclick=()=>{pick((tIdx+1)%TPL.length);$('st').textContent='Template alterado. Gere o Reel novamente para aplicar.'};
+async function copy(id){try{await navigator.clipboard.writeText($(id).value)}catch(e){$(id).select();document.execCommand('copy')} $('st').textContent='Copiado! ✅'}
+$('cC').onclick=()=>copy('cap');$('cT').onclick=()=>copy('tags');
+$('dl').onclick=()=>{if(!resultBlob)return;const name=$('dl').dataset.filename||'pechinchei-reel.webm';const a=document.createElement('a');a.href=resultUrl;a.download=name;document.body.appendChild(a);a.click();a.remove();$('st').textContent='Download iniciado. Se estiver no iPhone, use Compartilhar para salvar em Arquivos.'};
+$('share').onclick=async()=>{if(!resultBlob)return;const file=new File([resultBlob],$('dl').dataset.filename||'pechinchei-reel.webm',{type:resultBlob.type});try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],text:$('cap').value+'\n\n'+$('tags').value})}else if(navigator.share){await navigator.share({text:$('cap').value+'\n\n'+$('tags').value})}else setErr('Compartilhamento indisponível. Use Baixar vídeo.')}catch(e){if(e.name!=='AbortError')setErr('Não foi possível compartilhar este arquivo.')}};
+$('cover').onclick=()=>{if(!loaded){setErr('Envie um vídeo primeiro.');return}cv.toBlob(b=>{if(!b){setErr('Não foi possível gerar a capa.');return}const u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download='pechinchei-capa.jpg';a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)},'image/jpeg',.95)};
+const IDS=['pf','ph','hs','bg','vol','sz','ca'],CHECKS=['vf','pb2','fd','ct','bd'];
+$('savePre').onclick=()=>{try{const o={template:tIdx,logo:$('logo').files[0]?null:null};IDS.forEach(id=>o[id]=$(id).value);CHECKS.forEach(id=>o[id]=$(id).checked);if(logoImg){const c=document.createElement('canvas');c.width=logoImg.width;c.height=logoImg.height;c.getContext('2d').drawImage(logoImg,0,0);o.logo=c.toDataURL('image/png')}localStorage.setItem('pch_prefs',JSON.stringify(o));$('st').textContent='Preferências salvas neste aparelho. ✅'}catch(e){setErr('Não foi possível salvar as preferências. A logo pode ser muito grande.')}};
+$('clearPre').onclick=()=>{localStorage.removeItem('pch_prefs');$('st').textContent='Preferências apagadas.'};
+try{const o=JSON.parse(localStorage.getItem('pch_prefs')||'null');if(o){IDS.forEach(id=>{if(o[id]!=null)$(id).value=o[id]});CHECKS.forEach(id=>{if(o[id]!=null)$(id).checked=o[id]});if(o.template!=null)pick(o.template);if(o.logo){const im=new Image();im.onload=()=>logoImg=im;im.src=o.logo}}}catch(e){}
+window.addEventListener('beforeunload',()=>{if(video.src)URL.revokeObjectURL(video.src);if(resultUrl)URL.revokeObjectURL(resultUrl);cancelAnimationFrame(raf);if(audioCtx)audioCtx.close()});
+})();
+</script></body></html>
